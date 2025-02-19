@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOM Excercises</title>
+  <style>
+    /* Do not modify CSS and HTML, jump to the script at the bottom */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    hr {
+      margin: 2rem 0;
+    }
+
+    p,
+    li {
+      padding: 1rem;
+      font-size: 1.25rem;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+    }
+
+    li {
+      padding: 0.5rem 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <p id="a-p" style="width: 75%; background-color: blanchedalmond">
+    This paragraph width is a percentage of the width of the body. Measure the
+    actual width in pixels and log it the to console.
+  </p>
+  <hr />
+  <p data-bg="aliceblue">
+    Set the background of this paragraph to the color specified in its data-bg
+    attribute
+  </p>
+  <hr />
+  <p data-bg="aquamarine">
+    Do the same for this one, but extract the logic to its own function that
+    transform all the paragraphs with a data-bg attribute to the specified
+    color
+  </p>
+  <hr />
+  <p data-bg="beige">
+    This is just for testing purposes, if the background doesn't change,
+    something is wrong :(
+  </p>
+  <hr />
+  <p id="another-p" style="text-decoration: underline dotted; color: darkblue">
+    This paragraph has some inline styles applied to it. Make the background
+    "gainsboro", but keep the existing styles
+  </p>
+  <hr />
+  <p>
+    In the following list, make the even items bold, and every third item
+    italic
+  </p>
+  <ol class="list">
+    <li>This is a list item</li>
+    <li>This is a list item Fizz</li>
+    <li>This is a list item Buzz</li>
+    <li>This is a list item Fizz</li>
+    <li>This is a list item</li>
+    <li>This is a list item FizzBuzz</li>
+    <li>This is a list item</li>
+  </ol>
+  <hr />
+  <p>Log to the console the number of all paragraphs present in the page</p>
+  <hr />
+  <script>
+    // Your code here :)
+    // EXERCISE 1
+    const p1 = document.getElementById("a-p")
+    console.log(p1.offsetWidth)
+
+    // EXERCISE 2
+    const p2 = document.querySelector('[data-bg="aliceblue"]')
+    p2.style.backgroundColor = p2.getAttribute("data-bg");
+
+    // EXERCISE 3
+    function changeBackgroundColor(attribute) {
+      const allParagraphs = document.querySelectorAll(`[${attribute}]`) //'[data-bg]'
+
+      allParagraphs.forEach(element => {
+        element.style.backgroundColor = element.getAttribute(attribute) //'data-bg'
+      })
+    }
+    changeBackgroundColor("data-bg")
+
+    //EXERCISE 4
+    const p4 = document.getElementById("another-p")
+    p4.style.backgroundColor = "gainsboro"
+    p4.style = { backgroundColor: "gainsboro" }
+
+
+    //EXERCISE 5
+    const items = document.querySelectorAll("li");
+
+    items.forEach((item, i) => {
+      if ((i + 1) % 2 === 0) {
+        item.style.fontWeight = "bold"
+      }
+      if ((i + 1) % 3 === 0) {
+        item.style.fontStyle = "italic"
+      }
+    })
+
+    //EXERCISE 6
+    const paragraphs = document.querySelectorAll("p")
+    console.log(paragraphs.length)
+
+  </script>
+</body>
+
+</html>
+
