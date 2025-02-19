@@ -3,81 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DOM Excercises</title>
+    <title>Document</title>
     <style>
-      /* Do not modify CSS and HTML, jump to the script at the bottom */
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
 
-      hr {
-        margin: 2rem 0;
+      html,
+      body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
-      p,
-      li {
-        padding: 1rem;
-        font-size: 1.25rem;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-          sans-serif;
+      .box {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border: 4px groove #ccc;
+        background: white;
+        padding: 1rem 2.5rem;
       }
 
-      li {
-        padding: 0.5rem 2rem;
+      input[name="red"] {
+        background-color: aqua;
       }
     </style>
   </head>
   <body>
-    <p id="a-p" style="width: 75%; background-color: blanchedalmond">
-      This paragraph width is a percentage of the width of the body. Measure the
-      actual width in pixels and log it the to console.
-    </p>
-    <hr />
-    <p data-bg="aliceblue">
-      Set the background of this paragraph to the color specified in its data-bg
-      attribute
-    </p>
-    <hr />
-    <p data-bg="aquamarine">
-      Do the same for this one, but extract the logic to its own function that
-      transform all the paragraphs with a data-bg attribute to the specified
-      color
-    </p>
-    <hr />
-    <p data-bg="beige">
-      This is just for testing purposes, if the background doesn't change,
-      something is wrong :(
-    </p>
-    <hr />
-    <p
-      id="another-p"
-      style="text-decoration: underline dotted; color: darkblue"
-    >
-      This paragraph has some inline styles applied to it. Make the background
-      "gainsboro", but keep the existing styles
-    </p>
-    <hr />
-    <p>
-      In the following list, make the even items bold, and every third item
-      italic
-    </p>
-    <ol class="list">
-      <li>This is a list item</li>
-      <li>This is a list item Fizz</li>
-      <li>This is a list item Buzz</li>
-      <li>This is a list item Fizz</li>
-      <li>This is a list item</li>
-      <li>This is a list item FizzBuzz</li>
-      <li>This is a list item</li>
-    </ol>
-    <hr />
-    <p>Log to the console the number of all paragraphs present in the page</p>
-    <hr />
+    <div class="box">
+      <input name="red" type="range" min="0" max="255" />
+      <p>The red value is <span id="red-slider-value"></span></p>
+      <input name="green" type="range" min="0" max="255" />
+      <input name="blue" type="range" min="0" max="255" />
+    </div>
     <script>
-      // Your code here :)
+      const initalRedValue = 0;
+      const initalGreenValue = 125;
+      const initalBlueValue = 0;
+
+      document.body.style.backgroundColor = `rgb(${initalRedValue}, ${initalGreenValue}, ${initalBlueValue}`;
+
+      const redSlider = document.querySelector('input[name="red"]');
+      const greenSlider = document.querySelector('input[name="green"]');
+      const blueSlider = document.querySelector('input[name="blue"]');
+
+      redSlider.value = initalRedValue;
+      greenSlider.value = initalGreenValue;
+      blueSlider.value = initalBlueValue;
+
+      function onSliderChange() {
+        document.body.style.backgroundColor = `rgb(${redSlider.value}, ${greenSlider.value}, ${blueSlider.value}`;
+      }
+      redSlider.addEventListener("input", onSliderChange);
+      greenSlider.addEventListener("input", onSliderChange);
+      blueSlider.addEventListener("input", onSliderChange);
     </script>
   </body>
 </html>
