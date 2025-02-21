@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events</title>
+  <style>
+    .main-box {
+      background-color: beige;
+      display: flex;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .box {
+      height: 100px;
+      width: 100px;
+    }
+
+    .box:nth-child(1) {
+      background: red;
+    }
+
+    .box:nth-child(2) {
+      background: green;
+    }
+
+    .box:nth-child(3) {
+      background: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-box">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+  <div class="container">
+    <div class="selector"></div>
+  </div>
+  <div class="container selector"></div>
+  <script>
+    const container = document.querySelector('.main-box')
+    container.addEventListener('click', function (e) {
+      if (e.target.classList.contains('box')) {
+        container.style.background = window.getComputedStyle(e.target).background
+      }
+    })
+  </script>
+</body>
+</html>
